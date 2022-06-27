@@ -85,9 +85,16 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         actions: <Widget>[
-          IconButton(onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Qscanner()));
-          }, icon: Icon(Icons.qr_code))
+          IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => super.widget));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Qscanner()));
+              },
+              icon: Icon(Icons.qr_code))
         ],
         backgroundColor: Colors.deepPurple[300],
         leading: IconButton(
