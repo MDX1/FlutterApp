@@ -84,21 +84,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => super.widget));
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Qscanner()));
-              },
-              icon: Icon(Icons.qr_code))
-        ],
-        backgroundColor: Colors.deepPurple[300],
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, size: 30),
           onPressed: () {
             FirebaseAuth.instance.signOut();
           },
@@ -107,10 +94,29 @@ class _HomePageState extends State<HomePage> {
           'Produse',
           style: TextStyle(
             fontFamily: 'Times new Roman',
-            fontSize: 20,
+            fontSize: 30,
           ),
         ),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => super.widget));
+            },
+            icon: Icon(Icons.refresh, size: 30),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Qscanner()));
+            },
+            icon: Icon(Icons.qr_code_scanner_rounded, size: 30),
+          ),
+        ],
+        backgroundColor: Colors.deepPurple[300],
       ),
       body: Center(
         child: Column(
@@ -125,6 +131,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: docIDs.length,
                     itemBuilder: (context, index) {
                       return ListTile(
+                        // returneaza inregistrarile pe ecran
                         title: GetProdusName(documentId: docIDs[index]),
                       );
                     },
@@ -135,145 +142,143 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.deepPurple[300],
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                backgroundColor: Colors.grey[300],
-                title: Text(
-                  'Adaugare produs',
-                  style: GoogleFonts.bebasNeue(fontSize: 30),
-                ),
-                content: Container(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        // ADD ITEM - DENUMIREA
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: TextField(
-                                controller: _itemController,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Denumire produs',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 5),
 
-                        //Adaugare
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: TextField(
-                                controller: _cantitateController,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Cantitatea produsului',
-                                ),
+      // Addaugare element
+      floatingActionButton: Container(
+        height: 70,
+        width: 70,
+        child: FittedBox(
+          child: FloatingActionButton(
+            child: const Icon(Icons.add),
+            backgroundColor: Colors.deepPurple[300],
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.grey[300],
+                    title: Center(
+                      child: Text(
+                        'Adaugare produs',
+                        style: GoogleFonts.bebasNeue(fontSize: 50),
+                      ),
+                    ),
+                    content: Container(
+                      width: 400,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            // ADD ITEM - DENUMIREA
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(12),
                               ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 5),
-
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: TextField(
-                                controller: _pretController,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Pretul produsului',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 5),
-
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: TextField(
-                                controller: _pozitieController,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: 'Pozitia in depozit',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-
-                        //buton
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(vertical: 0),
-                            child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Adauga',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: TextField(
+                                  controller: _itemController,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Denumire produs',
                                   ),
                                 ),
-                                color: Colors.deepPurple[300],
-                                textColor: Colors.white,
-                                onPressed: () =>
-                                    [Navigator.pop(context), addProdus()]),
-                          ),
+                              ),
+                            ),
+
+                            SizedBox(height: 10),
+
+                            //Adaugare
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: TextField(
+                                  controller: _cantitateController,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Cantitatea produsului',
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(height: 10),
+
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: TextField(
+                                  controller: _pretController,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Pretul produsului',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 10),
+
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.white),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: TextField(
+                                  controller: _pozitieController,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    hintText: 'Pozitia in depozit',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 15),
+
+                            //buton
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 0),
+                              child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Adauga',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
+                                  ),
+                                  color: Colors.deepPurple[300],
+                                  textColor: Colors.white,
+                                  onPressed: () =>
+                                      [Navigator.pop(context), addProdus()]),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+        ),
       ),
     );
   }

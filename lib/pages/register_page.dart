@@ -13,8 +13,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-
-    // text controller
+  // text controller
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmpasswordController = TextEditingController();
@@ -27,18 +26,19 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future signUp() async {
-    if (passwrodConfirmed() == true){
+    if (passwrodConfirmed() == true) {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(), 
-        password: _passwordController.text.trim()
-      );
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
     }
   }
 
-  bool passwrodConfirmed(){
-    if(_passwordController.text.trim() == _confirmpasswordController.text.trim()){
+  bool passwrodConfirmed() {
+    if (_passwordController.text.trim() ==
+        _confirmpasswordController.text.trim()) {
       return true;
-    } else return false;
+    } else
+      return false;
   }
 
   @override
@@ -46,160 +46,160 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       body: SafeArea(
-      child: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-            //icon
-            Icon(
-              Icons.verified,
-              size: 100,
-            ),
-            //Hello
-            Text('Inregistrare',
-            style: GoogleFonts.bebasNeue(
-              fontSize: 52
-            ),
-            ),
-            SizedBox(height: 20),
-          
-            // email textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12)
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                //icon
+                Icon(
+                  Icons.verified,
+                  size: 100,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Email',
-                    ),
-                  ),
+                //Hello
+                Text(
+                  'Inregistrare',
+                  style: GoogleFonts.bebasNeue(fontSize: 52),
                 ),
-              ),
-            ),
-        
-            SizedBox(height: 10),
-            
-            // password textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12)
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: TextField(
-                    controller: _passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Password',
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
+                SizedBox(height: 40),
 
-            //confirm password textfield
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  border: Border.all(color: Colors.white),
-                  borderRadius: BorderRadius.circular(12)
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: TextField(
-                    controller: _confirmpasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Confirm Password',
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 5),
-        
-            // signIn
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Container(
-                padding: EdgeInsets.symmetric(vertical: 0),
-                child: RaisedButton(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Center(
-                    child: Text('Inregistreaza-te',
-                    style: 
-                      TextStyle(
-                        color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25
+                // email textfield
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: TextField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Email',
+                        ),
                       ),
                     ),
                   ),
-                  color: Colors.deepPurple,
-                  textColor: Colors.white,
-                  onPressed: signUp),
-              ),
-                
-              ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 25),
-            //   child: GestureDetector(
-            //     onTap: signIn,
-            //     child: Container( 
-            //       padding: EdgeInsets.all(25),
-            //       decoration: BoxDecoration(color: Colors.deepPurple,
-            //       borderRadius: BorderRadius.circular(12)),
-            //       child: Center(
-            //         child: Text(
-            //           'Conecteaza-te',
-            //           style: TextStyle(
-            //             color: Colors.white,
-            //             fontWeight: FontWeight.bold,
-            //             fontSize: 18
-            //             ),
-            //           ),
-            //       ),
-                  
-            //     ),
-            //   ),
-            // ),
-              SizedBox(height: 10),
-            
-            // Register
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Esti inregistrat? ',style: TextStyle(fontWeight: FontWeight.bold),),
-                GestureDetector( 
-                  onTap: widget.showLoginPage,
-                  child: Text('Conecteaza-te',style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold),
+                ),
+
+                SizedBox(height: 15),
+
+                // password textfield
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: TextField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Password',
+                        ),
+                      ),
+                    ),
                   ),
+                ),
+
+                SizedBox(height: 15),
+                //confirm password textfield
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: TextField(
+                        controller: _confirmpasswordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Confirm Password',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30),
+
+                // signIn
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 200),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 0),
+                    child: RaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Inregistreaza-te',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25),
+                          ),
+                        ),
+                        color: Colors.deepPurple,
+                        textColor: Colors.white,
+                        onPressed: signUp),
+                  ),
+                ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 25),
+                //   child: GestureDetector(
+                //     onTap: () {},
+                //     child: Container(
+                //       padding: EdgeInsets.all(25),
+                //       decoration: BoxDecoration(
+                //           color: Colors.deepPurple,
+                //           borderRadius: BorderRadius.circular(12)),
+                //       child: Center(
+                //         child: Text(
+                //           'Conecteaza-te',
+                //           style: TextStyle(
+                //               color: Colors.white,
+                //               fontWeight: FontWeight.bold,
+                //               fontSize: 18),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                SizedBox(height: 15),
+
+                // Register
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'ESTI INREGISTRAT? ',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    GestureDetector(
+                      onTap: widget.showLoginPage,
+                      child: Text(
+                        'CONECTEAZA-TE',
+                        style: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],),
+          ),
         ),
-      ),
       ),
     );
   }

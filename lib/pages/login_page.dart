@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                   'Conectare',
                   style: GoogleFonts.bebasNeue(fontSize: 52),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 40),
 
                 // email textfield
                 Padding(
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 10),
+                SizedBox(height: 15),
 
                 // password textfield
                 Padding(
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 8),
                 // forgot password
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -115,17 +115,18 @@ class _LoginPageState extends State<LoginPage> {
                             );
                           },
                           child: Text(
-                            'Forgot Password',
+                            'FORGOT PASSWORD',
                             style: TextStyle(
                                 color: Colors.red, fontWeight: FontWeight.bold),
                           )),
                     ],
                   ),
                 ),
-                SizedBox(height: 2),
+                SizedBox(height: 10),
+
                 // signIn
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  padding: const EdgeInsets.symmetric(horizontal: 200),
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 0),
                     child: RaisedButton(
@@ -168,20 +169,21 @@ class _LoginPageState extends State<LoginPage> {
                 //     ),
                 //   ),
                 // ),
-                SizedBox(height: 10),
+
+                SizedBox(height: 15),
 
                 // Register
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Nu esti inregistrat? ',
+                      'NU ESTI INREGISTRAT? ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     GestureDetector(
                       onTap: widget.showRegisterPage,
                       child: Text(
-                        'Fa-ti cont acum',
+                        'FA-TI CONT ACUM',
                         style: TextStyle(
                             color: Colors.red, fontWeight: FontWeight.bold),
                       ),

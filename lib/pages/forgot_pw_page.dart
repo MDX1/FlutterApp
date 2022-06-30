@@ -26,7 +26,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            content: Text('Resetarea parolei a fost transmisa pe @gmail'),
+            content: Text(
+                'Resetarea parolei a fost transmisa pe email-ul indicat anterior',
+                style: TextStyle(fontSize: 25)),
           );
         },
       );
@@ -57,7 +59,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         children: [
           Text(
             'Introdu Email pentru Link de resetare',
-            style: GoogleFonts.bebasNeue(fontSize: 25),
+            style: GoogleFonts.bebasNeue(fontSize: 40),
           ),
           SizedBox(height: 10),
 
@@ -85,7 +87,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
           MaterialButton(
             onPressed: passwordReset,
-            child: Text('Reset Password'),
+            child: Text(
+              'Resetare parola',
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
             color: Colors.deepPurple[300],
           ),
         ],

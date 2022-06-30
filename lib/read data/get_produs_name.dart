@@ -35,9 +35,7 @@ class GetProdusName extends StatelessWidget {
                               '${data['Pret produs']}' +
                               "\nPozitia: " +
                               '${data['Pozitie produs']}',
-                          style: TextStyle(
-                            fontFamily: "Times New Roman",
-                          ),
+                          style: TextStyle(fontSize: 35),
                         ),
                         actions: [
                           ElevatedButton(
@@ -49,7 +47,31 @@ class GetProdusName extends StatelessWidget {
                       );
                     });
               },
-              title: Text('${data['Denumire produs']}'),
+              title: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Denumire:' + ' ${data['Denumire produs']}',
+                      style: TextStyle(fontSize: 22),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Cantitate: ' + '${data['Cantitate produs']}',
+                      style: TextStyle(fontSize: 22),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Pozitie: ' + '${data['Pozitie produs']}',
+                      style: TextStyle(fontSize: 22),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
               trailing: IconButton(
                 icon: Icon(Icons.delete_sweep, color: Colors.red),
                 onPressed: () {
@@ -70,7 +92,8 @@ class GetProdusName extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () => [
-                                  Navigator.pop(context, 'Cancel'), print('')
+                                  Navigator.pop(context, 'Cancel'),
+                                  print('')
                                 ],
                                 //FirebaseFirestore.instance.collection('produse').doc(produs[documentId]).delete()],
                                 child: const Text('Da',

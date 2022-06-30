@@ -20,8 +20,14 @@ class _QscannerState extends State<Qscanner> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: Colors.deepPurple[300],
-        title: Text('QR scanner'),
+        title: Text('QR scanner', style: TextStyle(fontSize: 30)),
         centerTitle: true,
       ),
       body: Center(
@@ -34,16 +40,14 @@ class _QscannerState extends State<Qscanner> {
                 primary: Colors.amber,
                 onPrimary: Colors.black,
               ),
-              icon: Icon(Icons.camera_alt_outlined),
-              label: Text('Scaneaza'),
+              icon: Icon(Icons.camera_alt_outlined, size: 40),
+              label: Text('SCANEAZA', style: TextStyle(fontSize: 25)),
               onPressed: scanBarcode,
             ),
             SizedBox(height: 10),
             Text(
-              scanResult == null
-              ? 'Scan a code'
-              : 'Scan results : $scanResult',
-              style: TextStyle(fontSize: 20),
+              scanResult == null ? 'Scan a code' : 'Scan results : $scanResult',
+              style: TextStyle(fontSize: 30),
             )
           ],
         ),
